@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sofie</string>
+    <string name="txtTask">Tarefas</string>
 </resources>
