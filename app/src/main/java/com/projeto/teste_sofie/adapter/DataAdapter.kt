@@ -21,12 +21,10 @@ class DataAdapter (private val context: Context, private val list: DataList?): R
 
         var ph: RecyclerView.ViewHolder? = null
 
-
         val v = LayoutInflater.from(context).inflate(R.layout.card, parent, false)
         ph = DataHolder(v)
 
         return ph
-
     }
 
     override fun getItemCount(): Int {
@@ -34,7 +32,6 @@ class DataAdapter (private val context: Context, private val list: DataList?): R
         var size = list!!.DataList.size
 
         return size
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -42,7 +39,6 @@ class DataAdapter (private val context: Context, private val list: DataList?): R
         val item = list!!.DataList[position]
 
         (holder as? DataHolder)?.bindView(item)
-
     }
 
     class DataHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -52,24 +48,34 @@ class DataAdapter (private val context: Context, private val list: DataList?): R
 
         var data: Data? = null
 
-
         init {
 
             lblTitle= itemView.findViewById(R.id.lblTitle)
             lblDesc = itemView.findViewById(R.id.lblDesc)
         }
 
-
         fun bindView(data: Data) {
 
             this.data = data
 
+            var dataTitle: String? = "Sem titulo Disponivel"
+            var dataEmail: String? = "Sem email Disponivel"
+            var dataDesc: String? = "Sem descrição Disponivel"
 
-            lblTitle.text = data.title
-            lblDesc.text = data.description
+            if(data.title != "" && data.title != null){
+                dataTitle = data.title
+            }
+            if(data.email != "" && data.email != null){
+                dataEmail = data.email
+            }
+            if(data.description != "" && data.description != null){
+                dataDesc = data.description
+            }
 
+
+            lblTitle.text = dataTitle
+            lblDesc.text = dataEmail + ": " + dataDesc
         }
     }
-
 
 }
